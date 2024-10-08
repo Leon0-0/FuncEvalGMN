@@ -46,4 +46,3 @@ python3 GMN/test.py
 ```
 
 By default, this will use the checkpoint located in `GMN/save_file/checkpoints/`. If you'd like to use your own checkpoints, simply place them in this folder and adjust the `model_path` in the `test.py` file.
-# FuncEvalGMN
