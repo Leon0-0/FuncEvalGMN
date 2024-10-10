@@ -27,6 +27,7 @@ Our datasets are stored in the path ./GMN/database, which includes four datasets
 
 ## Models
 To download the best model, please check the following link: [FuncEvalGMN Google Drive folder] (https://drive.google.com/drive/folders/1KnVtwlDuIExoEY3Bq7ayKHhldhCtIydJ?usp=drive_link)
+
 We assume that you have downloaded it into ./GMN/save_file/checkpoints
 
 ## Training
