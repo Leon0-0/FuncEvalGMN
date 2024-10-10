@@ -20,7 +20,6 @@ def string_to_hash_vector(input_str):
     hash_hex = h.hexdigest()
 
     hash_bin = bin(int(hash_hex, 16))[2:].zfill(256)
-    # 将二进制字符串转化为整数向量
     vector = [int(bit) for bit in hash_bin]
     return numpy.array(vector)
 
@@ -92,9 +91,8 @@ computing_one_hot_encoded = pd.get_dummies(data)
 
 
 def replace_decimal(string):
-    # 定义要搜索的模式 - 匹配 {'decimal': [任意数字, 任意数字]}
+
     pattern = r"\{'decimal': \[\d+, \d+\]\}"
-    # 替换匹配的字符串为 "decimal"
     replaced_string = re.sub(pattern, "'decimal'", string)
 
     return replaced_string
@@ -141,11 +139,9 @@ def read_data(data):
     return pairs, labels
 
 def sort_elements_by_frequency(lst):
-    # 使用Counter对象统计元素出现频率
+
     counts = Counter(lst)
 
-    # 按出现频率对元素进行排序，出现频率多的在前
-    # Counter.most_common()方法直接按计数多少返回一个排好序的元素列表
     sorted_elements_by_count = [element for element, count in counts.most_common()]
 
     return sorted_elements_by_count

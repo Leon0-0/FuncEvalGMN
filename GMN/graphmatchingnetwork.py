@@ -119,7 +119,7 @@ def compute_cross_attention(x, y, sim, dim):
 def masked_softmax(similarity, mask):
     exps = torch.exp(similarity)
     masked_exps = exps * mask
-    masked_sums = masked_exps.sum(2, keepdim=True) + 1e-10  # 防止除0
+    masked_sums = masked_exps.sum(2, keepdim=True) + 1e-10 
     return masked_exps / masked_sums
 
 

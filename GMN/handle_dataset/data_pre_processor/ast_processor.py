@@ -81,11 +81,9 @@ class ASTProcessor(DataPreProcessor):
             edge_type.append("ast_edge")
 
     def replace_decimal(self, string):
-        # 定义要搜索的模式 - 匹配 {'decimal': [任意数字, 任意数字]}
+        
         pattern = r"\{'decimal': \[\d+, \d+\]\}"
-        # 替换匹配的字符串为 "decimal"
         replaced_string = re.sub(pattern, "'decimal'", string)
-
         return replaced_string
 
     def fix_json(self, sql_rel):
@@ -133,11 +131,7 @@ class ASTProcessor(DataPreProcessor):
 
     @staticmethod
     def sort_elements_by_frequency(lst):
-        # 使用Counter对象统计元素出现频率
         counts = Counter(lst)
-
-        # 按出现频率对元素进行排序，出现频率多的在前
-        # Counter.most_common()方法直接按计数多少返回一个排好序的元素列表
         sorted_elements_by_count = [element for element, count in counts.most_common()]
 
         return sorted_elements_by_count

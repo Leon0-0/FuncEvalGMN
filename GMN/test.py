@@ -57,15 +57,12 @@ def model_eval_dev(dev_dataset : SpiderDataset, name):
         thresholds = []
         kendall_taus = []
         for threshold in filtered_scores:
-        # 将分数转换为预测标签
             predicted_labels = np.where(x >= threshold, 1, 0)
-        # 计算 Kendall’s Tau
             tau, _ = stats.kendalltau(predicted_labels, y)
 
             thresholds.append(threshold)
             kendall_taus.append(tau)
     
-        # 更新最佳阈值
             if tau > best_tau:
                 best_tau = tau
                 best_threshold = threshold
@@ -73,8 +70,8 @@ def model_eval_dev(dev_dataset : SpiderDataset, name):
                 rho, p_value_rho = stats.spearmanr(predicted_labels, y)
 
         print(auc_score)
-        print(f'最佳阈值: {best_threshold}')
-        print(f'最高 Kendall’s Tau: {best_tau}')
+        print(f'Best Threshold: {best_threshold}')
+        print(f'Best Kendall’s Tau: {best_tau}')
         print("spearman:", rho)
 
 is_cuda = torch.cuda.is_available()

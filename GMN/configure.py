@@ -143,7 +143,7 @@ def get_CL_config():
             node_hidden_sizes=[node_state_dim],
             edge_hidden_sizes=[edge_state_dim],
             node_feature_dim=64,
-            edge_feature_dim = 1, #三种类型的edge
+            edge_feature_dim = 1,
             res_out_channels=[128, 256, 512],
             res_num_features = 128,
             res_out_features = 32,

@@ -114,7 +114,7 @@ class BaseDataPreProcessor:
         hash_hex = h.hexdigest()
 
         hash_bin = bin(int(hash_hex, 16))[2:].zfill(256)
-        # 将二进制字符串转化为整数向量
+    
         vector = [int(bit) for bit in hash_bin]
         return np.array(vector)
 
@@ -130,7 +130,7 @@ class BaseDataPreProcessor:
 
     def isinstanceIntList(self, test_list):
         if isinstance(test_list, list):
-            # 检查列表中的所有元素是否都是整数
+    
             if all(isinstance(item, int) for item in test_list):
                 return True
         return False

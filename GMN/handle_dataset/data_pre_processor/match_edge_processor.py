@@ -231,7 +231,7 @@ class DataPreProcessor(BaseDataPreProcessor):
         #  1 : {output : [2,3,4,6,7,8,3], input: [0],
         #  2 : {output : [2,3,4,6,7,8,3], input: [0, 1]}}
         # Id, input
-        #  input: [0, 1] -> [2,3,4,6,7,8,3] + [2,3,4,6,7,8,3] 的第七个
+        #  input: [0, 1] -> [2,3,4,6,7,8,3] + [2,3,4,6,7,8,3]
         if isinstance(rel, Dict):
             for k, v in rel.items():
 
@@ -262,27 +262,16 @@ class DataPreProcessor(BaseDataPreProcessor):
                     edge_type.append(np.array([1, 0, 0]))
 
                 index = len(node_type) - 1
-                # 如果碰到output，进入output handling 模式，需要继续深入
-                # 例如：'outputs': ['name', 'score']
 
                 if k == "outputs":
                     self.handling_output_remain_number = len(v)
-                    # print(" handling_output_remain_number", handling_output_remain_number)
-                # 如果碰到input，不要继续深入（达到删除子节点的效果），将当前的index指向
-                # 例如：'outputs': ['name', 'score']
                 if k in ["input", "group", "operands", "partition_by", "requiredColumns", "field"]:
-                    # 找到output_map中最大的max_key
+
                     max_output_key = str(max(map(int, output_map.keys())))
-                    # 获取最大output键的input值
                     max_output_input = output_map[max_output_key]['input']
-                    # 根据input值拼接对应的 1/2/n个 列表
                     merge_outputs_list = []
                     for input_value in max_output_input:
                         merge_outputs_list.extend(output_map[str(input_value)]['output_id'])
-                    # if k != 'input' and k != 'group':
-                    #     print("v", v)
-                    # input / group -> 单个int值
-                    # operands -> 单个int 列表 或 字典列表 [{'input': 2}, {'literal': 0}]}]
                     if isinstance(v, int):
                         edge.append([index, merge_outputs_list[v]])
                         # edge_type.append("data_edge")
@@ -329,7 +318,7 @@ class DataPreProcessor(BaseDataPreProcessor):
             for v in rel:
 
                 if 'operator' in v and isinstance(v, dict):
-                    # 每次碰到 'operator'，增加output_map的Key
+    
                     # array = computing_one_hot_encoded[v['operator']]
                     # array = array.astype(int).T.values
                     # node_emb.append(array)
@@ -394,9 +383,7 @@ class DataPreProcessor(BaseDataPreProcessor):
             output_map[max_key]["include_id"] = include_id
 
             if self.handling_output_remain_number != 0:
-                # 找到output_map中最大的max_key
                 max_output_key = str(max(map(int, output_map.keys())))
-                # 在最大的output键对应的output列表中添加元素1
                 output_map[max_output_key]['output_id'].append(index)
                 output_map[max_output_key]['output_name'].append(rel)
                 self.handling_output_remain_number = self.handling_output_remain_number - 1

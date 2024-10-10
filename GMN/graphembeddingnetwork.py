@@ -150,11 +150,10 @@ class GraphEncoder(nn.Module):
             embeddings; otherwise just the input edge_features.
         """
 
-        # 使用切片操作来拆分这个tensor
         node_features_value = node_features[:, :self._node_feature_dim]
         node_hash_value = node_features[:, self._node_feature_dim:]
         node_features = node_features_value
-        # 将完整的 node_feature 通过 MLP 层
+
         node_features_MLP = self.MLP_computing(node_features)
         node_outputs_com = node_features_MLP * mask_com.unsqueeze(1)
         # ==================================================================
@@ -767,7 +766,7 @@ class GraphEmbeddingNet(nn.Module):
             )
             # layer_outputs.append(node_states)
 
-        # these tensors may be used e.g. for visualization(这个list是用来画图的，不是拿来计算的)
+        # these tensors may be used e.g. for visualization
         # self._layer_outputs = layer_outputs
         output = self._aggregator(node_states, graph_idx, n_graphs)
         # output = self.proj_head(output)
