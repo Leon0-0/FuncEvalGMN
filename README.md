@@ -1,5 +1,9 @@
 # Towards Database-Free Text-to-SQL Evaluation: A Graph-Based Metric for Functional Correctness
 
+## Overview
+Execution Accuracy and Exact Set Match are commonly used metrics for evaluating the correctness of SQL queries in Text-to-SQL tasks, but both have limitations. Exact Set Match struggles with queries that are functionally equivalent but differ in syntax, while Execution Accuracy may lead to false positives because of the need for complete test databases. To address these issues, we proposed a metric called FuncEvalGMN. This graph-based metric uses relational operator trees (RelNode) to capture semantic information and applies a graph neural network for contrastive graph matching. Unlike previous approaches, FuncEvalGMN only requires the database schema, avoiding the need for costly test databases, and it generalizes well to unseen datasets, making it a scalable and reliable method for evaluating functional correctness.
+
+
 ## Setup
 If you're running Python version 3.7 on a macOS machine, you can establish a virtual environment by executing the following command:
 
@@ -19,12 +23,10 @@ conda activate FuncEvalGMN
 ```
 
 ## Dataset
-Due to file size limitations, we only uploaded "Spider_pair_train.xlsx" and "Spider_pair_dev.xlsx".
-To download more dataset, please check the following link: [FuncEvalGMN Google Drive folder](Not shown at this time due to anonymity requirements)
-We assume that you have downloaded it into ./GMN/database
+Our datasets are stored in the path ./GMN/database, which includes four datasets: Spider-pair train, Spider-pair dev, Spider-DK-pair dev, and Bird-pair dev.
 
 ## Models
-To download the best model, please check the following link: [FuncEvalGMN Google Drive folder](Not shown at this time due to anonymity requirements)
+To download the best model, please check the following link: [FuncEvalGMN Google Drive folder] (https://drive.google.com/drive/folders/1KnVtwlDuIExoEY3Bq7ayKHhldhCtIydJ?usp=drive_link)
 We assume that you have downloaded it into ./GMN/save_file/checkpoints
 
 ## Training
