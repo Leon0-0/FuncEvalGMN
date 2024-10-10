@@ -23,7 +23,7 @@ conda activate FuncEvalGMN
 ```
 
 ## Dataset
-Our datasets are stored in the path ./GMN/database, which includes four datasets: Spider-pair train, Spider-pair dev, Spider-DK-pair dev, and Bird-pair dev.
+Our datasets are stored in the path ./GMN/database, which includes five datasets: Spider-pair train, Spider-pair dev, Spider-DK-pair dev, Bird-pair dev and WikiSQL-pair dev.
 
 ## Models
 To download the best model, please check the following link: [FuncEvalGMN Google Drive folder] (https://drive.google.com/drive/folders/1KnVtwlDuIExoEY3Bq7ayKHhldhCtIydJ?usp=drive_link)
